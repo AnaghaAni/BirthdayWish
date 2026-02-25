@@ -1,0 +1,23 @@
+# Environment Variables (Secrets)
+.env
+
+# Personal Data
+data/DOB.xlsx
+assets/photos/
+images/
+
+# Python logs and state
+*.log
+used_wishes.json
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# IDE files
+.vscode/
+.idea/

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #eafaf1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Logo */
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 180px;
+        }
+
+        /* Heading */
+        h2 {
+            text-align: center;
+            color: #145a32;
+            margin-bottom: 30px;
+        }
+
+        /* Form Layout */
+        form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: bold;
+            color: #145a32;
+            margin-bottom: 6px;
+        }
+
+        input,
+        textarea {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background: #27ae60;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1e8449;
+        }
+
+        /* Company Section */
+        .company-details {
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 2px solid #eafaf1;
+        }
+
+        .company-details h3 {
+            text-align: center;
+            color: #145a32;
+        }
+
+        /* Office Grid */
+        .office-grid {
+            display: flex;
+            gap: 20px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .office-card {
+            flex: 1 1 300px;
+            background: #f4fff7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.05);
+            font-size: 14px;
+            color: #2d3436;
+        }
+
+        .office-card strong {
+            color: #145a32;
+        }
+
+        .contact-info {
+            margin-top: 25px;
+            text-align: center;
+            font-weight: bold;
+            color: #145a32;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Logo -->
+        <div class="logo">
+            <img src="https://via.placeholder.com/180x60?text=Company+Logo" alt="Company Logo">
+        </div>
+
+        <h2>Employee Registration Form</h2>
+
+        <form action="/register" method="POST" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" name="dob" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" name="phone" required>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Profile Image</label>
+                <input type="file" name="image_path" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label>Designation</label>
+                <input type="text" name="designation">
+            </div>
+
+            <div class="form-group">
+                <label>Skills</label>
+                <input type="text" name="skills" placeholder="e.g. Python, React">
+            </div>
+
+            <div class="form-group full-width">
+                <label>Hobbies</label>
+                <textarea name="hobbies" rows="3"></textarea>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Achievements</label>
+                <textarea name="achievements" rows="3"></textarea>
+            </div>
+
+            <div class="form-group full-width">
+                <label>About</label>
+                <textarea name="about" rows="4"></textarea>
+            </div>
+
+            <div class="full-width">
+                <button type="submit">Submit</button>
+            </div>
+
+        </form>
+
+        <!-- Company Details -->
+        <div class="company-details">
+
+            <h3>Our Offices</h3>
+
+            <div class="office-grid">
+
+                <div class="office-card">
+                    <strong>Technopark Office</strong><br><br>
+                    L-2, -1 Floor<br>
+                    Thejaswini Building,<br>
+                    Technopark, Trivandrum, India
+                </div>
+
+                <div class="office-card">
+                    <strong>Infopark Office</strong><br><br>
+                    3rd Floor<br>
+                    Thapasya Building<br>
+                    Infopark, Phase-1<br>
+                    Kochi, India
+                </div>
+
+                <div class="office-card">
+                    <strong>Dubai Office</strong><br><br>
+                    704-A<br>
+                    Aspin Commercial Tower<br>
+                    Sheikh Zayed Road<br>
+                    Dubai, UAE
+                </div>
+
+            </div>
+
+            <div class="contact-info">
+                📞 +91 471 270 0666 <br>
+                ✉ info@valoriz.com
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
