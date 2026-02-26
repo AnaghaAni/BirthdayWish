@@ -14,6 +14,7 @@ pipeline {
         SENDER_PASSWORD = credentials('SENDER_PASSWORD')
         SMTP_SERVER = 'smtp.gmail.com'
         SMTP_PORT = '587'
+        PYTHON_EXE = 'C:\\Users\\Anagha\\AppData\\Local\\Programs\\Python\\Python314\\python.exe'
     }
 
     stages {
@@ -27,7 +28,8 @@ pipeline {
         stage('Setup Environment') {
             steps {
                 bat """
-                python -m venv venv
+                "%PYTHON_EXE%" -m venv venv
+                venv\\Scripts\\python -m pip install --upgrade pip
                 venv\\Scripts\\pip install -r requirements.txt
                 """
             }
