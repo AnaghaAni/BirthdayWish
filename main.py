@@ -1,5 +1,6 @@
 import logging
 import os
+import sys
 from datetime import date
 from data_manager import get_birthday_employees, load_data
 from emailer import send_emails_batch, SENDER_EMAIL
@@ -104,6 +105,7 @@ def run_daily_check():
         else:
             print("[Error] Some or all emails failed to send. Check logs.")
             logging.error("Failed to complete the email batch.")
+            sys.exit(1)
 
 if __name__ == "__main__":
     try:
@@ -111,3 +113,4 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"[Critical Error] {e}")
         logging.critical(f"Bot crashed: {e}", exc_info=True)
+        sys.exit(1)
