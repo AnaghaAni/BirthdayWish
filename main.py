@@ -80,23 +80,24 @@ def run_daily_check():
                 all_photos.append(record['photo'])
         summary_html += "</body></html>"
 
-        # Strategy: One Team Announcement email with CC list
-        # We send TO the sender, and CC everyone else found in the sheet.
-        # This ensures the birthday person (who is in the sheet) receives it.
+        # Strategy: One Team Announcement email
+        # To: The Bot
+        # CC: Everyone (including the birthday person)
         cc_list = [e for e in team_emails if e.lower() != SENDER_EMAIL.lower()]
         
-        print(f" > Team announcement CC list ({len(cc_list)}): {', '.join(cc_list)}")
-        logging.info(f"Team notification queued for {len(cc_list)} CC recipients: {cc_list}")
+        print(f" > Team announcement To: {SENDER_EMAIL}")
+        print(f" > Team announcement CC: {len(cc_list)} recipients")
+        logging.info(f"Team notification queued. To: {SENDER_EMAIL} | CC: {cc_list}")
 
         email_tasks.append((
-            SENDER_EMAIL,     # To: Sender
+            SENDER_EMAIL,     # To: Bot
             subject_team,
             "Today's Birthday Celebrations!",
             None,
             [],               # BCC (None)
             summary_html,
             list(set(all_photos)),
-            cc_list           # CC (The Team)
+            cc_list           # CC (Everyone else)
         ))
         print(f" > Queued one team announcement with {len(cc_list)} CC recipients.")
 

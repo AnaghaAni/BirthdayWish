@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
-from email.utils import formatdate, make_msgid, parseaddr
+from email.utils import formatdate, make_msgid, parseaddr, getaddresses
 from dotenv import load_dotenv
 
 # Initialize Environment
@@ -106,8 +106,13 @@ def send_emails_batch(tasks):
                 msg = create_message(to_email, subject, body, attachment_paths, html_body, inline_images, cc_emails)
                 
                 # Determine Envelope Recipients (To + CC + BCC)
-                _, to_addr = parseaddr(str(to_email))
-                envelope_recipients = [to_addr.strip()]
+                # Correctly handle multiple recipients in To/CC/BCC strings
+                envelope_recipients = []
+                
+                # Extract all 'To' addresses
+                for _, addr in getaddresses([str(to_email)]):
+                    if addr.strip() and addr.strip() not in envelope_recipients:
+                        envelope_recipients.append(addr.strip())
                 
                 # Add CCs to envelope
                 if cc_emails:
@@ -128,7 +133,7 @@ def send_emails_batch(tasks):
                 # Send
                 server.sendmail(str(SENDER_EMAIL), envelope_recipients, msg.as_string().encode('utf-8'))
                 success_count += 1
-                print(f"   [OK] {subject[:30]}... -> {to_addr} (+ {len(envelope_recipients)-1} CC/BCC)")
+                print(f"   [OK] {subject[:30]}... -> {to_email} (+ {len(envelope_recipients)-1} CC/BCC)")
             except Exception as e:
                 logging.error(f"Failed to send email to {to_email}: {e}")
                 print(f"   [FAIL] {to_email}: {e}")
