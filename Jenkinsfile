@@ -15,6 +15,7 @@ pipeline {
         SMTP_SERVER = 'smtp.gmail.com'
         SMTP_PORT = '587'
         PYTHON_EXE = 'C:\\Users\\Anagha\\AppData\\Local\\Programs\\Python\\Python314\\python.exe'
+        PYTHONIOENCODING = 'utf-8'
     }
 
     stages {
