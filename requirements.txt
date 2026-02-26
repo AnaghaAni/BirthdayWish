@@ -1,6 +1,6 @@
 pandas
 openpyxl
-google-generativeai
+google-genai
 Pillow
 flask
 python-dotenv
