@@ -85,7 +85,8 @@ def run_daily_check():
         # This ensures the birthday person (who is in the sheet) receives it.
         cc_list = [e for e in team_emails if e.lower() != SENDER_EMAIL.lower()]
         
-        logging.info(f"Team notification queued for {len(cc_list)} CC recipients.")
+        print(f" > Team announcement CC list ({len(cc_list)}): {', '.join(cc_list)}")
+        logging.info(f"Team notification queued for {len(cc_list)} CC recipients: {cc_list}")
 
         email_tasks.append((
             SENDER_EMAIL,     # To: Sender
