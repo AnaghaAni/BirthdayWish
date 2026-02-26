@@ -81,8 +81,11 @@ def run_daily_check():
         summary_html += "</body></html>"
 
         # Strategy: One Team Announcement email with CC list
-        # Filter sender out of CC to avoid duplicates if they are already 'To'
+        # We send TO the sender, and CC everyone else found in the sheet.
+        # This ensures the birthday person (who is in the sheet) receives it.
         cc_list = [e for e in team_emails if e.lower() != SENDER_EMAIL.lower()]
+        
+        logging.info(f"Team notification queued for {len(cc_list)} CC recipients.")
 
         email_tasks.append((
             SENDER_EMAIL,     # To: Sender
