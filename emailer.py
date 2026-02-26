@@ -126,7 +126,7 @@ def send_emails_batch(tasks):
                             envelope_recipients.append(clean_addr)
                 
                 # Send
-                server.sendmail(str(SENDER_EMAIL), envelope_recipients, msg.as_string())
+                server.sendmail(str(SENDER_EMAIL), envelope_recipients, msg.as_string().encode('utf-8'))
                 success_count += 1
                 print(f"   [OK] {subject[:30]}... -> {to_addr} (+ {len(envelope_recipients)-1} CC/BCC)")
             except Exception as e:
